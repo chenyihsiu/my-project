@@ -1876,7 +1876,7 @@ const apiUrl = 'https://my-project-seven-drab.vercel.app';
 
         async function fetchUserProfile(userId) {
             try {
-                const response = await fetch('${apiUrl}/api/user-profile/' + encodeURIComponent(userId));
+                const response = await fetch(apiUrl + '/api/user-profile/' + encodeURIComponent(userId));
                 if (!response.ok) {
                     throw new Error('Network response was not ok.');
                 }
