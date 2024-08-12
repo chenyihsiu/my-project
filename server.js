@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const axios = require('axios');
 const app = express();
@@ -6,6 +7,10 @@ const port = 3000;
 
 // 替换为你的 Channel Access Token
 const CHANNEL_ACCESS_TOKEN = 'S/t3v5qVYgMKvYNrw72OUoHYF9XQswIg6n4jQheknjMhC9m/XSbG32nCPIW1NCjUkkJEdc13TVJSoOKv/lJJ+Ff9tnovrG5iWOX3mWQQsKniBauiC3Q09r8uBhBowK6Ovvf8ZZlLwVKZEXw53vgUxgdB04t89/1O/w1cDnyilFU=';
+
+
+// 使用 CORS 中间件
+app.use(cors());
 
 // 获取用户资料的 API 端点
 app.get('/api/user-profile/:userId', async (req, res) => {
