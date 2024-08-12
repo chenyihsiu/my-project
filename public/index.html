@@ -1870,6 +1870,19 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
     <script>
         //const userId = 'U0a49e765a241d21992c6d0a8f5fa4a34'; // 替????的 LINE 用? ID
 
+	    const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+		async function getUserProfile(userId) {
+		    try {
+		        const response = await fetch(`${apiUrl}/api/user-profile/${encodeURIComponent(userId)}`);
+		        const data = await response.json();
+		        return data;
+		    } catch (error) {
+		        console.error('Error fetching user profile:', error);
+		    }
+		}
+
+
         async function fetchUserProfile(userId) {
             try {
                 const response = await fetch('/api/user-profile/' + encodeURIComponent(userId));
