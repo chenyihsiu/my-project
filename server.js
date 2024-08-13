@@ -31,7 +31,8 @@ app.get('/api/user-profile/:userId', async (req, res) => {
 // 提供静态文件
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
+// 处理所有其他路径并返回 index.html
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
