@@ -31,6 +31,10 @@ app.get('/api/user-profile/:userId', async (req, res) => {
 // 提供静态文件
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 // 启动服务器
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
