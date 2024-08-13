@@ -936,7 +936,18 @@ async function displayComments(messageId, commentContainerId) {
 		//commentsContainer.style.border = '2px solid #ccc'; // 设置粗一点的外框
 
 
-	
+	// 如果 userId 存在，则获取用户信息
+            let userInfoHtml = '<p><i class="fas fa-user"></i><strong></strong> ' + message.userId + '</p>';
+            try {
+                const userProfile = await fetchUserProfile(message.userId); // 获取用户信息
+                if (userProfile) {
+                    const { pictureUrl, displayName } = userProfile;
+                    userInfoHtml = '<p><img src="' + pictureUrl + '" alt="User Avatar" class="avatar" /> <strong>' + displayName + '</strong>(' + message.userId+ ')</p>' ;
+
+                }
+            } catch (error) {
+                console.error('Error fetching user profile:', error);
+            }
 
         querySnapshot.forEach((doc) => {
             const commentData = doc.data();
