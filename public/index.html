@@ -929,6 +929,11 @@ async function displayComments(messageId, commentContainerId) {
         console.log('Comments fetched successfully for message:', messageId, 'Total:', querySnapshot.docs.length);
 
         const commentsContainer = document.getElementById(commentContainerId);
+        if (!commentsContainer) {
+            console.error('Comments container not found:', commentContainerId);
+            return;
+        }
+
         commentsContainer.innerHTML = ''; // 清空之前显示的评论
 
         // 获取所有用户的 ID
@@ -998,13 +1003,13 @@ async function displayComments(messageId, commentContainerId) {
 
             commentElement += '</div>';
 
-            commentsContainer.innerHTML += commentElement;
+            // 使用 DOM 操作添加评论内容
+            commentsContainer.insertAdjacentHTML('beforeend', commentElement);
         }
     } catch (error) {
         console.error('Error fetching comments:', error);
     }
 }
-
 
 
     
