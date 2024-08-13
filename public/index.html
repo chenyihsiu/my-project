@@ -643,14 +643,12 @@ async function displayMessages() {
         const messagesContainer = document.getElementById('messages');
         messagesContainer.innerHTML = '';
 
-        // 遍历每条留言并渲染到 HTML 页面上
         for (const doc of querySnapshot.docs) {
             console.log('Rendering message:', doc.id);
             const message = doc.data();
 
             const formattedTime = message.time.toDate().toLocaleString();
 
-            // 构建标题和按钮容器
             const titleAndButtonsContainer = document.createElement('div');
             titleAndButtonsContainer.style.display = 'flex';
             titleAndButtonsContainer.style.alignItems = 'center';
@@ -660,14 +658,12 @@ async function displayMessages() {
             titleElement.style.width = '2000px';
             titleAndButtonsContainer.appendChild(titleElement);
 
-            // 如果 userId 存在，则获取用户信息
             let userInfoHtml = '<p><i class="fas fa-user"></i><strong></strong> ' + message.userId + '</p>';
             try {
-                const userProfile = await fetchUserProfile(message.userId); // 获取用户信息
+                const userProfile = await fetchUserProfile(message.userId);
                 if (userProfile) {
                     const { pictureUrl, displayName } = userProfile;
-                    userInfoHtml = '<p><img src="' + pictureUrl + '" alt="User Avatar" class="avatar" /> <strong>' + displayName + '</strong>(' + message.userId+ ')</p>' ;
-
+                    userInfoHtml = '<p><img src="' + pictureUrl + '" alt="User Avatar" class="avatar" /> <strong>' + displayName + '</strong> (' + message.userId + ')</p>';
                 }
             } catch (error) {
                 console.error('Error fetching user profile:', error);
@@ -698,8 +694,8 @@ async function displayMessages() {
             }
 
             let messageElement = '<div class="message">';
-            messageElement += '<p>${titleAndButtonsContainer.outerHTML}</p>';
-            messageElement += userInfoHtml; // 插入用户信息
+            messageElement += '<p>' + titleAndButtonsContainer.outerHTML + '</p>';
+            messageElement += userInfoHtml;
             messageElement += '<p><i class="fas fa-clock"></i><strong></strong> ' + formattedTime + '</p>';
             messageElement += '<p><i class="fas fa-align-left"></i><strong></strong> <span class="large-text">' + message.content + '</span></p>';
             messageElement += '<p><i class="fas fa-tags"></i><strong></strong>' + getTagsAsLinks(message.tags) + '</p>';
@@ -756,7 +752,6 @@ async function displayMessages() {
         console.error('Error fetching messages:', error);
     }
 }
-
 
 
 // 将标签数组转换为超链接列表
@@ -934,15 +929,11 @@ async function displayComments(messageId, commentContainerId) {
             return;
         }
 
-        commentsContainer.innerHTML = ''; // 清空之前显示的评论
+        commentsContainer.innerHTML = ''; 
 
-        // 获取所有用户的 ID
         const userIds = querySnapshot.docs.map(doc => doc.data().userId);
-
-        // 获取所有用户的信息
         const userProfiles = await Promise.all(userIds.map(userId => fetchUserProfile(userId)));
 
-        // 创建一个用户信息的映射
         const userProfileMap = {};
         userIds.forEach((userId, index) => {
             userProfileMap[userId] = userProfiles[index];
@@ -950,53 +941,47 @@ async function displayComments(messageId, commentContainerId) {
 
         console.log('User profile map:', userProfileMap);
 
-        // 遍历每条评论
         for (const doc of querySnapshot.docs) {
             const commentData = doc.data();
             const formattedTime = commentData.time.toDate().toLocaleString();
 
-            // 获取用户信息
-            const userProfile = userProfileMap[commentData.userId] || {};
-            const { pictureUrl = '', displayName = '' } = userProfile;
+            const userProfile = userProfileMap[commentData.userId] || { pictureUrl: '', displayName: '' };
+            const { pictureUrl, displayName } = userProfile;
             const userInfoHtml = '<p><img src="' + pictureUrl + '" alt="User Avatar" class="avatar" /> <strong>' + displayName + '</strong> (' + commentData.userId + ')</p>';
 
             let commentElement = '<div class="comment" style="border: 1px solid #ccc; background-color: #f5f5f5; margin-bottom: 10px; padding: 10px;" data-comment-id="' + doc.id + '">';
-            commentElement += userInfoHtml; // 插入用户信息
+            commentElement += userInfoHtml;
             commentElement += '<p><strong>时间:</strong> ' + formattedTime + '</p>';
             commentElement += '<p><strong>内容:</strong> ' + commentData.content + '</p>';
 
-            // 添加修改和删除按钮（如果评论是当前用户发布的）
             if (commentData.userId === userId) {
                 const buttonsContainer = document.createElement('div');
-                buttonsContainer.style.display = 'flex'; // 设置容器为弹性布局
-                buttonsContainer.style.alignItems = 'center'; // 垂直居中对齐
+                buttonsContainer.style.display = 'flex';
+                buttonsContainer.style.alignItems = 'center';
 
-                // 构建修改按钮
                 const editcommentButton = document.createElement('button');
                 const icon3 = document.createElement('i');
-                icon3.className = 'fas fa-edit'; // Font Awesome 图标类
-                icon3.style.marginRight = '8px'; // 设置图标右边距
+                icon3.className = 'fas fa-edit';
+                icon3.style.marginRight = '8px';
                 const textNode3 = document.createTextNode('修改评论');
                 editcommentButton.appendChild(icon3);
                 editcommentButton.appendChild(textNode3);
-                editcommentButton.style.backgroundColor = '#007bff'; // 设置修改按钮的背景颜色
+                editcommentButton.style.backgroundColor = '#007bff';
                 buttonsContainer.appendChild(editcommentButton);
 
-                // 构建删除按钮
                 const deletecommentButton = document.createElement('button');
                 const icon4 = document.createElement('i');
-                icon4.className = 'fas fa-trash'; // Font Awesome 图标类
-                icon4.style.marginRight = '8px'; // 设置图标右边距
+                icon4.className = 'fas fa-trash';
+                icon4.style.marginRight = '8px';
                 const textNode4 = document.createTextNode('删除评论');
                 deletecommentButton.appendChild(icon4);
                 deletecommentButton.appendChild(textNode4);
-                deletecommentButton.style.backgroundColor = 'red'; // 设置删除按钮的背景颜色
-                deletecommentButton.style.marginLeft = '10px'; // 设置删除按钮与修改按钮之间的间距
+                deletecommentButton.style.backgroundColor = 'red';
+                deletecommentButton.style.marginLeft = '10px';
                 buttonsContainer.appendChild(deletecommentButton);
-
                 // 添加空白的 div 元素来创建间距
                 const spacer = document.createElement('div');
-                spacer.style.height = '80px'; // 设置空白元素的高度
+                spacer.style.height = '80px';
                 buttonsContainer.appendChild(spacer);
 
                 // 将按钮容器添加到评论元素中
@@ -1875,33 +1860,35 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 	const apiUrl = 'https://my-project-chenyihsiu.vercel.app';
 
         async function fetchUserProfile(userId) {
-            try {
-                const response = await fetch(apiUrl + '/api/user-profile/' + encodeURIComponent(userId));
-                if (!response.ok) {
-                    throw new Error('Network response was not ok.');
-                }
-                return await response.json();
-            } catch (error) {
-                console.error('Error fetching user profile:', error);
-                return null;
-            }
-        }
+	    try {
+	        const response = await fetch(apiUrl + '/api/user-profile/' + encodeURIComponent(userId));
+	        if (!response.ok) {
+	            throw new Error('Network response was not ok.');
+	        }
+	        return await response.json();
+	    } catch (error) {
+	        console.error('Error fetching user profile:', error);
+	        return null;
+	    }
+	}
 
-        async function updateUserInfo(userId) {
-            const userInfoElement = document.getElementById('user-info');
-            const userProfile = await fetchUserProfile(userId);
-            let content = '';
-            if (userProfile) {
-                const { pictureUrl, displayName } = userProfile;
-                content = '<img src="' + pictureUrl + '" alt="User Avatar" class="avatar" /> ' +
-                          '<strong>' + displayName + ' (' + userId + ')</strong>';
-            } else {
-                content = '<strong>Error fetching user info</strong>';
-            }
-            userInfoElement.innerHTML = content;
-        }
 
-        updateUserInfo(userId);
+
+	    function getTagsAsLinks(tags) {
+		    return tags.map(tag => `<a href="#" class="tag-link">${tag}</a>`).join(', ');
+		}
+		
+		function handleCommentSubmit(event, messageInfo, userId, db, commentContent) {
+		    // 处理评论提交的逻辑
+		    console.log('Comment submitted for message:', messageInfo.title, 'by user:', userId);
+		    // 示例代码：这里可以将评论保存到数据库
+		}
+		
+		// 点击标签过滤消息的示例函数
+		function filterMessagesByTag(tag) {
+		    console.log('Filtering messages by tag:', tag);
+		    // 示例代码：这里可以根据标签过滤消息
+}
     </script>
 
     <hr />  
