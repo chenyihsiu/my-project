@@ -661,7 +661,7 @@ async function displayMessages() {
             titleAndButtonsContainer.appendChild(titleElement);
 
             // 如果 userId 存在，则获取用户信息
-            let userInfoHtml = '<p><i class="fas fa-user"></i><strong></strong> ' + message.userId + '</p>';
+            const userInfoHtml = '<p><i class="fas fa-user"></i><strong></strong> ' + message.userId + '</p>';
             try {
                 const userProfile = await fetchUserProfile(message.userId); // 获取用户信息
                 if (userProfile) {
@@ -1721,7 +1721,7 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 	
 	
 	
-	<div id="user-info"></div>
+	
 
 	
   <div class="row">
