@@ -935,11 +935,14 @@ async function displayComments(messageId, commentContainerId) {
         //commentsContainer.style.backgroundColor = '#f5f5f5'; // 设置背景颜色
 		//commentsContainer.style.border = '2px solid #ccc'; // 设置粗一点的外框
 
+
+	
+
         querySnapshot.forEach((doc) => {
             const commentData = doc.data();
             const formattedTime = commentData.time.toDate().toLocaleString();
             let commentElement = '<div class="comment" style="border: 1px solid #ccc; background-color: #f5f5f5; margin-bottom: 10px; padding: 10px;" data-comment-id="' + doc.id + '">' +
-                        '<p><strong>用户ID:</strong> ' + commentData.userId + '</p>' +
+                        '<p><strong>用户ID:</strong> ' + userInfoHtml + '</p>' +
                         '<p><strong>時間:</strong> ' + formattedTime + '</p>' +
                         '<p><strong>内容:</strong> ' + commentData.content + '</p>';
 
