@@ -933,7 +933,7 @@ async function displayComments(messageId, commentContainerId) {
 
         // 获取所有用户的 ID
         const userIds = querySnapshot.docs.map(doc => doc.data().userId);
-        
+
         // 获取所有用户的信息
         const userProfiles = await Promise.all(userIds.map(userId => fetchUserProfile(userId)));
 
@@ -1004,7 +1004,6 @@ async function displayComments(messageId, commentContainerId) {
         console.error('Error fetching comments:', error);
     }
 }
-
 
 
 
