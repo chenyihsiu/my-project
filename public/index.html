@@ -948,6 +948,8 @@ async function displayComments(messageId, commentContainerId) {
             userProfileMap[userId] = userProfiles[index];
         });
 
+        console.log('User profile map:', userProfileMap);
+
         // 遍历每条评论
         for (const doc of querySnapshot.docs) {
             const commentData = doc.data();
