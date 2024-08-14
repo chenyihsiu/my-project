@@ -932,14 +932,17 @@ async function displayComments(messageId, commentContainerId) {
         commentsContainer.innerHTML = '';
 
         const userIds = querySnapshot.docs.map(doc => doc.data().userId);
+        console.log('User IDs:', userIds);  // 调试输出
+
         const userProfiles = await Promise.all(userIds.map(userId => fetchUserProfile(userId)));
+        console.log('User profiles:', userProfiles);  // 调试输出
 
         const userProfileMap = {};
         userIds.forEach((userId, index) => {
             userProfileMap[userId] = userProfiles[index];
         });
 
-        console.log('User profile map:', userProfileMap); // 调试输出，检查 `userProfileMap`
+        console.log('User profile map:', userProfileMap); // 调试输出，检查 userProfileMap
 
         for (const doc of querySnapshot.docs) {
             const commentData = doc.data();
@@ -952,6 +955,8 @@ async function displayComments(messageId, commentContainerId) {
             // 检查用户资料是否正确获取
             if (!displayName || !pictureUrl) {
                 console.error('Failed to fetch profile for user:', commentData.userId);
+            } else {
+                console.log('Fetched profile:', displayName, pictureUrl);  // 添加日志输出
             }
 
             const userInfoHtml = '<p><img src="' + pictureUrl + '" alt="User Avatar" class="avatar" /> <strong>' + displayName + '</strong> (' + commentData.userId + ')</p>';
@@ -999,6 +1004,7 @@ async function displayComments(messageId, commentContainerId) {
         console.error('Error fetching comments:', error);
     }
 }
+
 
     
 
