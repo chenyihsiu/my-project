@@ -458,6 +458,7 @@ async function displayMessages() {
             // 标签
             const tagsElement = document.createElement('p');
             tagsElement.innerHTML = `<strong></strong> ${message.tags ? getTagsAsLinks(message.tags) : ''}`;
+	    tagsElement.style.marginLeft = '55px';
             messageElement.appendChild(tagsElement);
 
             // 图片
@@ -645,6 +646,7 @@ async function filterMessagesByTag(tag) {
             // 标签
             const tagsElement = document.createElement('p');
             tagsElement.innerHTML = ` ${message.tags ? getTagsAsLinks(message.tags) : ''}`;
+	    tagsElement.style.marginLeft = '55px';
             messageElement.appendChild(tagsElement);
 
             // 图片
@@ -778,20 +780,16 @@ async function displayComments(messageId, commentContainerId) {
 
             const userInfoHtml = '<p><img src="' + pictureUrl + '" alt="User Avatar" class="avatar" /> <strong>' + displayName + '</strong> (' + commentData.userId + ')</p>';
 
-            // 时间
-	    formattedTime.style.marginLeft = '50px';
-	    formattedTime.style.fontSize = '10px'; // 设置文字大小为10像素
-            
+            // 时间元素
+            const timeElement = `<p style="margin-left: 50px; font-size: 10px;"><strong>时间:</strong> ${formattedTime}</p>`;
 
-            // 内容
-	    commentData.content.style.marginLeft = '50px';
-            
+            // 内容元素
+            const contentElement = `<p style="margin-left: 50px;"><strong>内容:</strong> ${commentData.content}</p>`;
 
-		
-	    let commentElement = '<div class="comment" style="border: 1px solid #ccc; background-color: #f5f5f5; margin-bottom: 10px; padding: 10px;" data-comment-id="' + doc.id + '">';
+            let commentElement = '<div class="comment" style="border: 1px solid #ccc; background-color: #f5f5f5; margin-bottom: 10px; padding: 10px;" data-comment-id="' + doc.id + '">';
             commentElement += userInfoHtml;
-            commentElement += '<p><strong>时间:</strong> ' + formattedTime + '</p>';
-            commentElement += '<p><strong>内容:</strong> ' + commentData.content + '</p>';
+            commentElement += timeElement;
+            commentElement += contentElement;
 
             if (commentData.userId === userId) {
                 const buttonsContainer = document.createElement('div');
@@ -831,6 +829,7 @@ async function displayComments(messageId, commentContainerId) {
         console.error('Error fetching comments:', error);
     }
 }
+
 
 
 
