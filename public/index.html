@@ -492,11 +492,11 @@ async function displayMessages() {
             commentInput.type = 'text';
             commentInput.name = 'commentContent';
             commentInput.placeholder = '請输入評論内容';
-            commentInput.style.flex = '1';
             commentInput.style.marginRight = '10px';
             commentInput.style.border = '2px solid #ccc';
             commentInput.style.borderRadius = '5px';
             commentInput.style.padding = '5px';
+	    commentInput.style.width = '1600px';
 
             const submitCommentButton = document.createElement('button');
             submitCommentButton.type = 'submit';
@@ -595,19 +595,6 @@ async function filterMessagesByTag(tag) {
 			
             // 添加修改和删除按钮（如果用户ID匹配）
             if (message.userId === userId) {
-                <!-- // 构建修改按钮 -->
-                <!-- const editButton = document.createElement('button'); -->
-                <!-- editButton.textContent = '修改'; // 设置按钮的文本内容 -->
-				<!-- editButton.style.backgroundColor = 'green'; // 设置修改按钮的背景颜色 -->
-
-                <!-- messageElement += editButton.outerHTML; -->
-
-                <!-- // 构建删除按钮 -->
-                <!-- const deleteButton = document.createElement('button'); -->
-                <!-- deleteButton.textContent = '刪除'; // 设置按钮的文本内容 -->
-				<!-- deleteButton.style.backgroundColor = 'red'; // 设置删除按钮的背景颜色 -->
-
-                <!-- messageElement += deleteButton.outerHTML; -->
 				
 				// 添加修改按钮
 				const editButton = document.createElement('button');
@@ -623,11 +610,28 @@ async function filterMessagesByTag(tag) {
 				deleteButton.style.marginLeft = '10px'; // 设置删除按钮与修改按钮之间的间距
 				titleAndButtonsContainer.appendChild(deleteButton);
             }
+	    // 用户信息
+            const userInfoElement = document.createElement('p');
+            try {
+                const userProfile = await fetchUserProfile(message.userId);
+                if (userProfile) {
+                    const { pictureUrl, displayName } = userProfile;
+                    userInfoElement.innerHTML = `<img src="${pictureUrl}" alt="User Avatar" class="avatar" /> <strong>${displayName}</strong> (${message.userId})`;
+                } else {
+                    userInfoElement.innerHTML = `<i class="fas fa-user"></i> <strong></strong> ${message.userId}`;
+                }
+            } catch (error) {
+                console.error('Error fetching user profile:', error);
+                userInfoElement.innerHTML = `<i class="fas fa-user"></i> <strong></strong> ${message.userId}`;
+            }
+
+
+	    
 			// 将标题和按钮容器添加到消息元素中
 			messageElement += '<p>';
 			messageElement += titleAndButtonsContainer.outerHTML;
 			messageElement += '</p>';
-            messageElement += '<p><strong>名稱:</strong> ' + message.userId + '</p>';
+            messageElement += '<p><strong>名稱:</strong> ' + userInfoElement + '</p>';
             messageElement += '<p><strong>時間:</strong> ' + formattedTime + '</p>';
             messageElement += '<p><strong>內文:</strong> ' + message.content + '</p>';
             messageElement += '<p><strong>標籤:</strong> ' + getTagsAsLinks(message.tags) + '</p>';
