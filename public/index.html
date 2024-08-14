@@ -634,124 +634,59 @@ const userId = 'U0a49e765a241d21992c6d0a8f5fa4a34'; // 假设用户ID为固定�
     <!-- } -->
 <!-- } -->
 
-async function displayMessages() {
+async function displayComments(messageId, commentContainerId) {
     try {
-        console.log('Fetching messages from the database...');
-        const querySnapshot = await db.collection('project').doc('messages').collection('messages').get();
-        console.log('Messages fetched successfully:', querySnapshot.docs.length, 'messages found.');
+        const querySnapshot = await db.collection('project').doc('messages').collection('reply').where('messageId', '==', messageId).get();
+        console.log('Comments fetched successfully for message:', messageId, 'Total:', querySnapshot.docs.length);
 
-        const messagesContainer = document.getElementById('messages');
-        messagesContainer.innerHTML = '';
-
-        for (const doc of querySnapshot.docs) {
-            console.log('Rendering message:', doc.id);
-            const message = doc.data();
-
-            const formattedTime = message.time.toDate().toLocaleString();
-
-            const titleAndButtonsContainer = document.createElement('div');
-            titleAndButtonsContainer.style.display = 'flex';
-            titleAndButtonsContainer.style.alignItems = 'center';
-
-            const titleElement = document.createElement('h4');
-            titleElement.innerHTML = '<strong>標題:</strong> ' + message.title;
-            titleElement.style.width = '2000px';
-            titleAndButtonsContainer.appendChild(titleElement);
-
-            let userInfoHtml = '<p><i class="fas fa-user"></i><strong></strong> ' + message.userId + '</p>';
-            try {
-                const userProfile = await fetchUserProfile(message.userId);
-                if (userProfile) {
-                    const { pictureUrl, displayName } = userProfile;
-                    userInfoHtml = '<p><img src="' + pictureUrl + '" alt="User Avatar" class="avatar" /> <strong>' + displayName + '</strong> (' + message.userId + ')</p>';
-                }
-            } catch (error) {
-                console.error('Error fetching user profile:', error);
-            }
-
-            if (message.userId === userId) {
-                const editButton = document.createElement('button');
-                const icon = document.createElement('i');
-                icon.className = 'fas fa-edit';
-                icon.style.marginRight = '8px';
-                const textNode = document.createTextNode('修改');
-                editButton.appendChild(icon);
-                editButton.appendChild(textNode);
-                editButton.style.backgroundColor = '#007bff';
-                editButton.style.marginLeft = 'auto';
-                titleAndButtonsContainer.appendChild(editButton);
-
-                const deleteButton = document.createElement('button');
-                const icon2 = document.createElement('i');
-                icon2.className = 'fas fa-trash';
-                icon2.style.marginRight = '8px';
-                const textNode2 = document.createTextNode('刪除');
-                deleteButton.appendChild(icon2);
-                deleteButton.appendChild(textNode2);
-                deleteButton.style.backgroundColor = 'red';
-                deleteButton.style.marginLeft = '10px';
-                titleAndButtonsContainer.appendChild(deleteButton);
-            }
-
-            let messageElement = '<div class="message">';
-            messageElement += '<p>' + titleAndButtonsContainer.outerHTML + '</p>';
-            messageElement += userInfoHtml;
-            messageElement += '<p><i class="fas fa-clock"></i><strong></strong> ' + formattedTime + '</p>';
-            messageElement += '<p><i class="fas fa-align-left"></i><strong></strong> <span class="large-text">' + message.content + '</span></p>';
-            messageElement += '<p><i class="fas fa-tags"></i><strong></strong>' + getTagsAsLinks(message.tags) + '</p>';
-            messageElement += '<p><i class="fas fa-image"></i><strong></strong></p>';
-            messageElement += '<ul>';
-            Object.keys(message).filter(key => key.startsWith('imageUrl_')).forEach(key => {
-                messageElement += '<li><img src="' + message[key] + '" style="width: 200px; height: 200px;"></li>';
-            });
-            messageElement += '</ul>';
-
-            const commentContainerId = 'comments-' + doc.id;
-            messageElement += '<div id="' + commentContainerId + '"></div>';
-            const commentForm = '<form class="commentForm" data-message-id="' + doc.id + '">' +
-                '<div style="display: flex; align-items: center;">' +
-                '<input type="text" name="commentContent" placeholder="請输入評論内容" style="width: 1600px; margin-right: 10px; border: 2px solid #ccc; border-radius: 5px; padding: 5px;">' +
-                '<button type="submit" class="submitCommentButton">提交評論</button>' +
-                '</div>' +
-                '</form>';
-
-            messagesContainer.innerHTML += messageElement + commentForm;
-            messagesContainer.insertAdjacentHTML('beforeend', '<hr>');
-
-            globalMessageInfo[doc.id] = { userId: message.userId, title: message.title };
-
-            const commentForms = document.querySelectorAll('.commentForm');
-            commentForms.forEach(commentForm => {
-                commentForm.addEventListener('submit', function (event) {
-                    event.preventDefault();
-                    const commentContent = commentForm.querySelector('input[name="commentContent"]').value;
-                    const messageId = commentForm.getAttribute('data-message-id');
-                    const messageInfo = globalMessageInfo[messageId];
-
-                    if (messageInfo) {
-                        handleCommentSubmit(event, messageInfo, userId, db, commentContent);
-                    } else {
-                        console.error('Failed to find message info.');
-                    }
-                });
-            });
-
-            displayComments(doc.id, commentContainerId);
+        const commentsContainer = document.getElementById(commentContainerId);
+        if (!commentsContainer) {
+            console.error('Comments container not found:', commentContainerId);
+            return;
         }
 
-        const tagsLinks = document.querySelectorAll('.tag-link');
-        tagsLinks.forEach(tagLink => {
-            tagLink.addEventListener('click', function (event) {
-                event.preventDefault();
-                const tag = tagLink.textContent.trim();
-                filterMessagesByTag(tag);
-            });
+        // 確保commentsContainer清空
+        commentsContainer.innerHTML = '';
+
+        const userIds = querySnapshot.docs.map(doc => doc.data().userId);
+        const userProfiles = await Promise.all(userIds.map(userId => fetchUserProfile(userId)));
+        const userProfileMap = {};
+
+        userIds.forEach((userId, index) => {
+            userProfileMap[userId] = userProfiles[index];
         });
 
+        for (const doc of querySnapshot.docs) {
+            const commentData = doc.data();
+            const formattedTime = commentData.time.toDate().toLocaleString();
+            const userProfile = userProfileMap[commentData.userId] || { pictureUrl: '', displayName: '' };
+
+            // 構建評論HTML
+            let commentElement = `
+                <div class="comment" style="border: 1px solid #ccc; background-color: #f5f5f5; margin-bottom: 10px; padding: 10px;" data-comment-id="${doc.id}">
+                    <p><img src="${userProfile.pictureUrl}" alt="User Avatar" class="avatar" /> <strong>${userProfile.displayName}</strong> (${commentData.userId})</p>
+                    <p><strong>時間:</strong> ${formattedTime}</p>
+                    <p><strong>內容:</strong> ${commentData.content}</p>
+            `;
+
+            // 如果是自己的評論，顯示編輯和刪除按鈕
+            if (commentData.userId === userId) {
+                commentElement += `
+                    <div style="display: flex; align-items: center;">
+                        <button style="background-color: #007bff;" class="edit-comment-button">修改評論</button>
+                        <button style="background-color: red; margin-left: 10px;" class="delete-comment-button">刪除評論</button>
+                    </div>
+                `;
+            }
+
+            commentElement += '</div>';
+            commentsContainer.insertAdjacentHTML('beforeend', commentElement);
+        }
     } catch (error) {
-        console.error('Error fetching messages:', error);
+        console.error('Error fetching comments:', error);
     }
 }
+
 
 
 // 将标签数组转换为超链接列表
