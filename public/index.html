@@ -406,7 +406,7 @@ async function displayMessages() {
             // 标题
             const titleElement = document.createElement('h4');
             titleElement.innerHTML = '<strong>標題:</strong> ' + message.title;
-            titleElement.style.flex = '1';
+            titleElement.style.width = '2000px';
             titleAndButtonsContainer.appendChild(titleElement);
 
             // 如果用户是消息的作者，添加编辑和删除按钮
@@ -544,92 +544,6 @@ async function displayMessages() {
 
 
 		 
-async function displayComments(messageId, commentContainerId) {
-    try {
-        const querySnapshot = await db.collection('project').doc('messages').collection('reply').where('messageId', '==', messageId).get();
-        console.log('Comments fetched successfully for message:', messageId, 'Total:', querySnapshot.docs.length);
-
-        const commentsContainer = document.getElementById(commentContainerId);
-        if (!commentsContainer) {
-            console.error('Comments container not found:', commentContainerId);
-            return;
-        }
-
-        commentsContainer.innerHTML = '';
-
-        const userIds = querySnapshot.docs.map(doc => doc.data().userId);
-        console.log('User IDs:', userIds);  // 调试输出
-
-        const userProfiles = await Promise.all(userIds.map(userId => fetchUserProfile(userId)));
-        console.log('User profiles:', userProfiles);  // 调试输出
-
-        const userProfileMap = {};
-        userIds.forEach((userId, index) => {
-            userProfileMap[userId] = userProfiles[index];
-        });
-
-        console.log('User profile map:', userProfileMap); // 调试输出，检查 userProfileMap
-
-        for (const doc of querySnapshot.docs) {
-            const commentData = doc.data();
-            const formattedTime = commentData.time.toDate().toLocaleString();
-
-            // 获取用户资料
-            const userProfile = userProfileMap[commentData.userId] || { pictureUrl: '', displayName: '' };
-            const { pictureUrl, displayName } = userProfile;
-
-            // 检查用户资料是否正确获取
-            if (!displayName || !pictureUrl) {
-                console.error('Failed to fetch profile for user:', commentData.userId);
-            } else {
-                console.log('Fetched profile:', displayName, pictureUrl);  // 添加日志输出
-            }
-
-            const userInfoHtml = '<p><img src="' + pictureUrl + '" alt="User Avatar" class="avatar" /> <strong>' + displayName + '</strong> (' + commentData.userId + ')</p>';
-
-            let commentElement = '<div class="comment" style="border: 1px solid #ccc; background-color: #f5f5f5; margin-bottom: 10px; padding: 10px;" data-comment-id="' + doc.id + '">';
-            commentElement += userInfoHtml;
-            commentElement += '<p><strong>时间:</strong> ' + formattedTime + '</p>';
-            commentElement += '<p><strong>内容:</strong> ' + commentData.content + '</p>';
-
-            if (commentData.userId === userId) {
-                const buttonsContainer = document.createElement('div');
-                buttonsContainer.style.display = 'flex';
-                buttonsContainer.style.alignItems = 'center';
-
-                const editCommentButton = document.createElement('button');
-                const icon3 = document.createElement('i');
-                icon3.className = 'fas fa-edit';
-                icon3.style.marginRight = '8px';
-                const textNode3 = document.createTextNode('修改评论');
-                editCommentButton.appendChild(icon3);
-                editCommentButton.appendChild(textNode3);
-                editCommentButton.style.backgroundColor = '#007bff';
-                buttonsContainer.appendChild(editCommentButton);
-
-                const deleteCommentButton = document.createElement('button');
-                const icon4 = document.createElement('i');
-                icon4.className = 'fas fa-trash';
-                icon4.style.marginRight = '8px';
-                const textNode4 = document.createTextNode('删除评论');
-                deleteCommentButton.appendChild(icon4);
-                deleteCommentButton.appendChild(textNode4);
-                deleteCommentButton.style.backgroundColor = 'red';
-                deleteCommentButton.style.marginLeft = '10px';
-                buttonsContainer.appendChild(deleteCommentButton);
-
-                // 添加按钮到评论
-                commentElement += buttonsContainer.outerHTML;
-            }
-
-            commentElement += '</div>';
-
-            commentsContainer.insertAdjacentHTML('beforeend', commentElement);
-        }
-    } catch (error) {
-        console.error('Error fetching comments:', error);
-    }
-}
 
 
 
@@ -796,7 +710,6 @@ async function filterMessagesByTag(tag) {
 
 
 
-
 async function displayComments(messageId, commentContainerId) {
     try {
         const querySnapshot = await db.collection('project').doc('messages').collection('reply').where('messageId', '==', messageId).get();
@@ -883,6 +796,7 @@ async function displayComments(messageId, commentContainerId) {
         console.error('Error fetching comments:', error);
     }
 }
+
 
 
     
