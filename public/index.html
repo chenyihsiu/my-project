@@ -473,7 +473,8 @@ async function displayMessages() {
                 const img = document.createElement('img');
                 img.src = message[key];
                 img.style.width = '200px';
-                img.style.height = '200px';
+                img.style.height = '300px';
+		img.style.marginLeft = '100px'; // 图片向右移动 100px
                 listItem.appendChild(img);
                 imagesList.appendChild(listItem);
             });
