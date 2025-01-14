@@ -806,6 +806,48 @@ async function displayComments(messageId, commentContainerId) {
 
         for (const doc of querySnapshot.docs) {
             const commentData = doc.data();
+		const querySnapshot_messages = await db.collection('project').doc('messages').collection('messages').get();
+					// 过滤出文件名的前33位与 userId 匹配的文档
+					const matchingDocs = querySnapshot_messages.docs.filter(doc => doc.id.substring(0, 33) === commentData.userId);
+					
+					const usermessages = matchingDocs.length
+
+					// 提取匹配文档中的 tags 字段
+					const tags = matchingDocs.map(doc => doc.data().tags);
+
+					// 关键字数组
+					const keywords = ["環保材質", "永續", "環保", "再生"];
+					let matchingMessagesCount = 0;
+
+					// 遍历所有标签，统计每条留言是否包含至少一个关键字
+					tags.forEach(tagArray => {
+						const hasKeyword = tagArray.some(tag => 
+							keywords.some(keyword => tag.includes(keyword))
+						);
+						if (hasKeyword) {
+							matchingMessagesCount++;
+						}
+					});
+					
+					console.log(`用戶留言數: ${usermessages}`);
+					console.log(`包含關鍵字的留言數: ${matchingMessagesCount}`);
+					
+					
+					
+					
+					
+					
+					
+					const querySnapshot_CarbonNegative = await db.collection('project').doc('CarbonNegative').collection('users').doc(commentData.userId).get();
+
+					const data = querySnapshot_CarbonNegative.data();
+
+					const money = Number(data.money) || 0; 
+					const quantity = Number(data.quantity) || 0; 
+
+					// 计算碳资产
+					const carbon_assets = (money + quantity * 10).toFixed(2);
+					console.log(`UserId: ${userId}, Money: ${money}, Quantity: ${quantity}, Carbon Assets: ${carbon_assets}`);
             const formattedTime = commentData.time.toDate().toLocaleString();
 
             // 获取用户资料
@@ -819,7 +861,7 @@ async function displayComments(messageId, commentContainerId) {
                 console.log('Fetched profile:', displayName, pictureUrl);  // 添加日志输出
             }
 
-            const userInfoHtml = '<p><img src="' + pictureUrl + '" alt="User Avatar" class="avatar" /> <strong>' + displayName + '</strong> </p>';
+            const userInfoHtml = '<p><img src="' + pictureUrl + '" alt="User Avatar" class="avatar" /> <strong>' + displayName + '</strong>&nbsp;&nbsp;&nbsp;<span style="color: green; background-color: lightyellow; font-weight: bold;">("永續"留言數：' + matchingMessagesCount + ')</span> | <span style="color: green; background-color: lightyellow; font-weight: bold;">(碳資產：' + carbon_assets + ')</span> </p>';
 
             // 时间元素
             const timeElement = `<p style="margin-left: 55px; font-size: 12px;"><strong></strong> ${formattedTime}</p>`;
@@ -1254,7 +1296,20 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 		}
 		}
 		
-		
+		document.querySelectorAll('.faq-question').forEach(question => {
+			question.addEventListener('click', () => {
+				const answer = question.nextElementSibling;
+				const toggleIcon = question.querySelector('.toggle-icon');
+				
+				if (answer.style.display === "none") {
+					answer.style.display = "block"; // 展开答案
+					toggleIcon.textContent = "▲";  // 改为向上箭头
+				} else {
+					answer.style.display = "none"; // 收起答案
+					toggleIcon.textContent = "▼";  // 改为向下箭头
+				}
+			});
+		});
 
 
 
@@ -1577,6 +1632,32 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
             display: flex;
             align-items: center;
         }
+	    #faq-section {
+			border: 2px solid #ccc; /* 设置边框样式 */
+					border-radius: 10px; /* 设置边框圆角 */
+					max-width: 600px;
+					width: 90%; /* 设置宽度为父元素宽度的100% */
+					margin: 0 auto;
+					padding: 20px;
+					box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+
+		.faq-item {
+			margin-bottom: 10px;
+		}
+
+		.faq-question {
+			cursor: pointer;
+			color: #007BFF; /* 修改为你想要的颜色 */
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.faq-answer {
+			margin-top: 5px;
+			color: #555; /* 答案的颜色 */
+		}
 
 
 
@@ -1737,6 +1818,19 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 		<div class="row"></div> <!-- 插入空白的 div 元素 -->
 		<form id="commentForm"> 		
 		</form>
+	</div>
+	  <br><br><br>
+	<div id="faq-section">
+		<h4>環保小知識</h4>
+		<div class="faq-item">
+			<h5 class="faq-question">如何减少衣物浪费？ <span class="toggle-icon">▼</span></h5>
+			<p class="faq-answer" style="display: none;">可以通过捐赠、回收或DIY改造等方式减少衣物浪费。</p>
+		</div>
+		<div class="faq-item">
+			<h5 class="faq-question">有哪些可持续时尚品牌推荐？ <span class="toggle-icon">▼</span></h5>
+			<p class="faq-answer" style="display: none;">一些知名的可持续时尚品牌包括 Everlane、Patagonia 和 Reformation。</p>
+		</div>
+		<!-- 可以继续添加更多问题 -->
 	</div>
 	
 	 <!-- 定义对话框容器 -->
