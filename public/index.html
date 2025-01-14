@@ -406,7 +406,7 @@ async function displayMessages() {
             // 标题
             const titleElement = document.createElement('h4');
             titleElement.innerHTML = '<strong>標題:</strong> ' + message.title;
-            titleElement.style.width = '1000px';
+            titleElement.style.width = '800px';
             titleAndButtonsContainer.appendChild(titleElement);
 
             // 如果用户是消息的作者，添加编辑和删除按钮
@@ -420,7 +420,7 @@ async function displayMessages() {
                 const deleteButton = document.createElement('button');
                 deleteButton.innerHTML = '<i class="fas fa-trash" style="margin-right: 8px;"></i>刪除';
                 deleteButton.style.backgroundColor = 'red';
-                deleteButton.style.marginLeft = '10px';
+                deleteButton.style.marginLeft = 'auto';
                 titleAndButtonsContainer.appendChild(deleteButton);
             }
 
@@ -502,7 +502,7 @@ async function displayMessages() {
             commentInput.style.border = '2px solid #ccc';
             commentInput.style.borderRadius = '5px';
             commentInput.style.padding = '5px';
-	    commentInput.style.width = '1200px';
+	    commentInput.style.width = '800px';
 
             const submitCommentButton = document.createElement('button');
             submitCommentButton.type = 'submit';
@@ -1238,8 +1238,8 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
        .container {
 			border: 2px solid #ccc; /* 设置边框样式 */
 			border-radius: 10px; /* 设置边框圆角 */
-			max-width: 600px;
-			width: 90%; /* 设置宽度为父元素宽度的100% */
+			max-width: 700px;
+			width: 100%; /* 设置宽度为父元素宽度的100% */
 			margin: 0 auto;
 			padding: 20px;
 			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -1547,7 +1547,7 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 	}
 
 	.full-width-image {
-		width: 265%; /* 确保图片宽度适应屏幕宽度 */
+		width: 110%; /* 确保图片宽度适应屏幕宽度 */
 		height: auto;
         margin: 0;
         padding-left: 0px;
@@ -1644,7 +1644,7 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 			
 			<div class="input-container">
 				<i class="fas fa-image"></i>
-				<label for="imageInput">圖片：</label>
+				<label for="imageInput">圖片:</label>
 				<input type="file" id="imageInput" name="imageInput"  multiple><br><br>
 			</div>
 			<div id="uploadedImagesContainer">
