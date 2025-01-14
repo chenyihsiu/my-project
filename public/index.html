@@ -1487,10 +1487,11 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 			z-index: 3;
 		}
 		
-		 .input-container {
-            display: flex;
+      .input-container {
+            display: inline-flex;
             align-items: center;
             margin-bottom: 20px;
+	      
         }
         .input-container i {
             background-color: #4a2b1e;
@@ -1498,17 +1499,20 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
             padding: 10px;
             border-radius: 50%;
             margin-right: 10px;
+		 display: inline; /* 子元素不换行 */
         }
 		.input-container label {
             font-size: 1em; /* 增加字体大小 */
             color: #333; /* 改变文本颜色 */
             margin-right: 10px;
+			 display: inline; /* 子元素不换行 */
         }
         .input-container input,
         .input-container textarea {
             flex: 1;
             padding: 10px;
             font-size: 1em; /* 设置输入框字体大小 */
+		 display: inline; /* 子元素不换行 */
         }
 		
 		p i {
@@ -1624,7 +1628,7 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 	
   <div class="row">
     <div class="container">
-        <h2>新增留言板</h2>
+        <h3><center>新增留言板</center></h3>
 		<div class="row">
 		<form id="messageForm">
 			<div class="input-container">
@@ -1682,7 +1686,7 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
     </div>
 	
 	<div class="container">
-        <h2>留言板</h2>
+        <h3><center>留言板</center></h3>
 		<button type="submit" id="showAllMessagesButton">顯示全部留言</button>
 
 		<div id="messages"></div>
