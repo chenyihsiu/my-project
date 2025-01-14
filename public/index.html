@@ -472,7 +472,7 @@ async function displayMessages() {
                 const userProfile = await fetchUserProfile(message.userId);
                 if (userProfile) {
                     const { pictureUrl, displayName } = userProfile;
-                    userInfoElement.innerHTML = `<img src="${pictureUrl}" alt="User Avatar" class="avatar" /> <strong>${displayName}</strong><br><span style="color: green; font-weight: bold; background-color: lightyellow;">("永續"留言數：${matchingMessagesCount})</span> | <span style="color: green; font-weight: bold; background-color: lightyellow;">(碳資產：${carbon_assets})</span>`;
+                    userInfoElement.innerHTML = `<img src="${pictureUrl}" alt="User Avatar" class="avatar" /> <strong>${displayName}</strong><br>&nbsp;&nbsp;&nbsp;<span style="color: green; font-weight: bold; background-color: lightyellow;">("永續"留言數：${matchingMessagesCount})</span> | <span style="color: green; font-weight: bold; background-color: lightyellow;">(碳資產：${carbon_assets})</span>`;
                 } else {
                     userInfoElement.innerHTML = `<i class="fas fa-user"></i> <strong></strong> ${message.userId}`;
                 }
@@ -861,7 +861,7 @@ async function displayComments(messageId, commentContainerId) {
                 console.log('Fetched profile:', displayName, pictureUrl);  // 添加日志输出
             }
 
-            const userInfoHtml = '<p><img src="' + pictureUrl + '" alt="User Avatar" class="avatar" /> <strong>' + displayName + '</strong><br><span style="color: green; background-color: lightyellow; font-weight: bold;">("永續"留言數：' + matchingMessagesCount + ')</span> | <span style="color: green; background-color: lightyellow; font-weight: bold;">(碳資產：' + carbon_assets + ')</span> </p>';
+            const userInfoHtml = '<p><img src="' + pictureUrl + '" alt="User Avatar" class="avatar" /> <strong>' + displayName + '</strong><br>&nbsp;&nbsp;&nbsp;<span style="color: green; background-color: lightyellow; font-weight: bold;">("永續"留言數：' + matchingMessagesCount + ')</span> | <span style="color: green; background-color: lightyellow; font-weight: bold;">(碳資產：' + carbon_assets + ')</span> </p>';
 
             // 时间元素
             const timeElement = `<p style="margin-left: 55px; font-size: 12px;"><strong></strong> ${formattedTime}</p>`;
