@@ -390,6 +390,46 @@ async function displayMessages() {
 
         for (const doc of querySnapshot.docs) {
             console.log('Rendering message:', doc.id);
+		const userId = doc.id.substring(0, 33); 
+			
+					// 过滤出文件名的前33位与 userId 匹配的文档
+					const matchingDocs = querySnapshot.docs.filter(doc => doc.id.substring(0, 33) === userId);
+					
+					const usermessages = matchingDocs.length
+
+					// 提取匹配文档中的 tags 字段
+					const tags = matchingDocs.map(doc => doc.data().tags);
+
+					// 关键字数组
+					const keywords = ["環保材質", "永續", "環保", "再生"];
+					let matchingMessagesCount = 0;
+
+					// 遍历所有标签，统计每条留言是否包含至少一个关键字
+					tags.forEach(tagArray => {
+						const hasKeyword = tagArray.some(tag => 
+							keywords.some(keyword => tag.includes(keyword))
+						);
+						if (hasKeyword) {
+							matchingMessagesCount++;
+						}
+					});
+					
+					console.log(`用戶留言數: ${usermessages}`);
+					console.log(`包含關鍵字的留言數: ${matchingMessagesCount}`);
+					
+					
+					
+					
+					const querySnapshot_CarbonNegative = await db.collection('project').doc('CarbonNegative').collection('users').doc(userId).get();
+
+					const data = querySnapshot_CarbonNegative.data();
+
+					const money = Number(data.money) || 0; 
+					const quantity = Number(data.quantity) || 0; 
+
+					// 计算碳资产
+					const carbon_assets = (money + quantity * 10).toFixed(2);
+					console.log(`UserId: ${userId}, Money: ${money}, Quantity: ${quantity}, Carbon Assets: ${carbon_assets}`);
             const message = doc.data();
 
             const formattedTime = message.time.toDate().toLocaleString();
@@ -432,7 +472,7 @@ async function displayMessages() {
                 const userProfile = await fetchUserProfile(message.userId);
                 if (userProfile) {
                     const { pictureUrl, displayName } = userProfile;
-                    userInfoElement.innerHTML = `<img src="${pictureUrl}" alt="User Avatar" class="avatar" /> <strong>${displayName}</strong>`;
+                    userInfoElement.innerHTML = `<img src="${pictureUrl}" alt="User Avatar" class="avatar" /> <strong>${displayName}</strong>&nbsp;&nbsp;&nbsp;<span style="color: green; font-weight: bold; background-color: lightyellow;">("永續"留言數：${matchingMessagesCount})</span> | <span style="color: green; font-weight: bold; background-color: lightyellow;">(碳資產：${carbon_assets})</span>`;
                 } else {
                     userInfoElement.innerHTML = `<i class="fas fa-user"></i> <strong></strong> ${message.userId}`;
                 }
