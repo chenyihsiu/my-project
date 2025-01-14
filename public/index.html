@@ -7,34 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https：//cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-	<link rel="stylesheet" href="https：//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-	<link rel="stylesheet" href="https：//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 
     <!-- Compiled and minified JavaScript -->
-    <script src="https：//cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
-    <!-- LIFF v1只能用到2021年4月 https：//developers.line.biz/en/docs/liff/versioning-policy/ -->
-    <!-- LIFF v2從2019年10月啟用 https：//developers.line.biz/en/docs/liff/developing-liff-apps/#developing-a-liff-app -->
-    <script charset="utf-8" src="https：//static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <!-- LIFF v1只能用到2021年4月 https://developers.line.biz/en/docs/liff/versioning-policy/ -->
+    <!-- LIFF v2從2019年10月啟用 https://developers.line.biz/en/docs/liff/developing-liff-apps/#developing-a-liff-app -->
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
         <!-- Firebase JavaScript SDK -->
-    <script src="https：//www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https：//www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-    <script src="https：//www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script> <!-- 新增实时数据库模块的引用 -->
-    <script src="https：//www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script> <!-- 新增实时数据库模块的引用 -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     
     <script>
         // 定義 auth 變數在全局範圍
         const firebaseConfig = {
-        apiKey： "AIzaSyBHpI4FEtn_BwHIflsS5HFcgCVcADZxFHo",
-                    authDomain： "test-7e963.firebaseapp.com",
-                    databaseURL： "https：//test-7e963-default-rtdb.firebaseio.com",
-                    projectId： "test-7e963",
-                    storageBucket： "test-7e963.appspot.com",
-                    messagingSenderId： "555361679149",
-                    appId： "1：555361679149：web：a0865f6148e4beedf705a4",
-                    measurementId： "G-03YPJLJHMJ"
+        apiKey: "AIzaSyBHpI4FEtn_BwHIflsS5HFcgCVcADZxFHo",
+                    authDomain: "test-7e963.firebaseapp.com",
+                    databaseURL: "https://test-7e963-default-rtdb.firebaseio.com",
+                    projectId: "test-7e963",
+                    storageBucket: "test-7e963.appspot.com",
+                    messagingSenderId: "555361679149",
+                    appId: "1:555361679149:web:a0865f6148e4beedf705a4",
+                    measurementId: "G-03YPJLJHMJ"
     };
         
       // Firebase初始化
@@ -85,7 +85,7 @@
 							const userId = 'U0a49e765a241d21992c6d0a8f5fa4a34'; // 假设用户ID为固定值
 							const titleElement = messageElement.querySelector('h4');
 							const titleText = titleElement.textContent;
-							const colonIndex = titleText.indexOf('：');
+							const colonIndex = titleText.indexOf(':');
 							if (colonIndex !== -1) {
 								const replyNumber = titleText.substring(colonIndex + 1).trim();
 								editMessage(userId, replyNumber);
@@ -97,7 +97,7 @@
 							const userId = 'U0a49e765a241d21992c6d0a8f5fa4a34'; // 假设用户ID为固定值
 							const titleElement = messageElement.querySelector('h4');
 							const titleText = titleElement.textContent;
-							const colonIndex = titleText.indexOf('：');
+							const colonIndex = titleText.indexOf(':');
 							if (colonIndex !== -1) {
 								const replyNumber = titleText.substring(colonIndex + 1).trim();
 								deleteMessage(userId, replyNumber);
@@ -123,31 +123,31 @@
 		
 		
 		
-            // 參考 https：//developers.line.biz/en/reference/liff/#initialize-liff-app
+            // 參考 https://developers.line.biz/en/reference/liff/#initialize-liff-app
             liff
                 .init({
-                    // 這裡要改成自己的LIFF URL的後半段 https：//liff.line.me/##########-XXXXXXXX
-                    liffId： '2003991300-029M8WXw'    
+                    // 這裡要改成自己的LIFF URL的後半段 https://liff.line.me/##########-XXXXXXXX
+                    liffId: '2003991300-029M8WXw'    
                 })
                 .then(() => {
                 
-                    // 參考 https：//developers.line.biz/en/reference/liff/#get-line-version
+                    // 參考 https://developers.line.biz/en/reference/liff/#get-line-version
                     document.getElementById("getLineVersion").innerHTML = liff.getLineVersion();
 
-                    // 參考 https：//developers.line.biz/en/reference/liff/#is-in-client
+                    // 參考 https://developers.line.biz/en/reference/liff/#is-in-client
                     document.getElementById("isInClient").innerHTML = liff.isInClient();
 
-                    // 參考 https：//developers.line.biz/en/reference/liff/#get-context
+                    // 參考 https://developers.line.biz/en/reference/liff/#get-context
                     document.getElementById("getContextViewType").innerHTML = liff.getContext().viewType;
                     document.getElementById("getContextType").innerHTML = liff.getContext().type;
                     document.getElementById("getContextUtouId").innerHTML = liff.getContext().utouId;
                     document.getElementById("getContextGroupId").innerHTML = liff.getContext().groupId;
                     document.getElementById("getContextRoomId").innerHTML = liff.getContext().roomId;
 
-                    // 參考 https：//developers.line.biz/en/reference/liff/#is-logged-in
+                    // 參考 https://developers.line.biz/en/reference/liff/#is-logged-in
                     document.getElementById("isLoggedIn").innerHTML = liff.isLoggedIn();
                     
-                    // 參考 https：//developers.line.biz/en/reference/liff/#get-profile
+                    // 參考 https://developers.line.biz/en/reference/liff/#get-profile
                     liff.getProfile()
                     .then(profile => {
                         document.getElementById("getProfileDisplayName").innerHTML = profile.displayName;
@@ -158,10 +158,10 @@
                       console.log('error', err);
                     }); 
 
-                    // 參考 https：//developers.line.biz/en/reference/liff/#get-os
+                    // 參考 https://developers.line.biz/en/reference/liff/#get-os
                     document.getElementById("getOS").innerHTML = liff.getOS();
 
-                    // 參考 https：//developers.line.biz/en/reference/liff/#get-language
+                    // 參考 https://developers.line.biz/en/reference/liff/#get-language
                     document.getElementById("getLanguage").innerHTML = liff.getLanguage();
 
                 })
@@ -310,11 +310,11 @@
 
 				// 构建消息对象
 				const messageData = {
-					title： title,
-					content： content,
-					time： firebase.firestore.FieldValue.serverTimestamp(),
-					userId： userId,
-					tags： tags,
+					title: title,
+					content: content,
+					time: firebase.firestore.FieldValue.serverTimestamp(),
+					userId: userId,
+					tags: tags,
 					// 其他字段...
 				};
 
@@ -326,13 +326,13 @@
 				for (let i = 0; i < imageFiles.length; i++) {
 					const imageUrl = await uploadImageToStorage(imageFiles[i], newMessageRef);
 					// 将图片的 URL 设置为消息对象的字段，每张图片使用不同的字段名
-					await newMessageRef.update({ ['imageUrl_' + i]： imageUrl });
+					await newMessageRef.update({ ['imageUrl_' + i]: imageUrl });
 				}
 
 				alert('留言已成功上傳！');
 			} catch (error) {
-				console.error('保存消息到 Cloud Firestore 时出错：', error);
-				alert('保存消息到 Cloud Firestore 时出错：' + error.message);
+				console.error('保存消息到 Cloud Firestore 时出错:', error);
+				alert('保存消息到 Cloud Firestore 时出错:' + error.message);
 			}
 		}
 
@@ -354,8 +354,8 @@
 				const url = await imageRef.getDownloadURL();
 				return url;
 			} catch (error) {
-				console.error('將圖片上傳到 Firebase Storage 時出错：', error);
-				alert('將圖片上傳到 Firebase Storage 時出错：' + error.message);
+				console.error('將圖片上傳到 Firebase Storage 時出错:', error);
+				alert('將圖片上傳到 Firebase Storage 時出错:' + error.message);
 			}
 		}
 		
@@ -383,13 +383,13 @@ async function displayMessages() {
     try {
         console.log('Fetching messages from the database...');
         const querySnapshot = await db.collection('project').doc('messages').collection('messages').get();
-        console.log('Messages fetched successfully：', querySnapshot.docs.length, 'messages found.');
+        console.log('Messages fetched successfully:', querySnapshot.docs.length, 'messages found.');
 
         const messagesContainer = document.getElementById('messages');
         messagesContainer.innerHTML = ''; // 清空消息容器
 
         for (const doc of querySnapshot.docs) {
-            console.log('Rendering message：', doc.id);
+            console.log('Rendering message:', doc.id);
             const message = doc.data();
 
             const formattedTime = message.time.toDate().toLocaleString();
@@ -405,20 +405,20 @@ async function displayMessages() {
 
             // 标题
             const titleElement = document.createElement('h4');
-            titleElement.innerHTML = '<strong>標題：</strong> ' + message.title;
+            titleElement.innerHTML = '<strong>標題:</strong> ' + message.title;
             titleElement.style.width = '800px';
             titleAndButtonsContainer.appendChild(titleElement);
 
             // 如果用户是消息的作者，添加编辑和删除按钮
             if (message.userId === userId) {
                 const editButton = document.createElement('button');
-                editButton.innerHTML = '<i class="fas fa-edit" style="margin-right： 8px;"></i>修改';
+                editButton.innerHTML = '<i class="fas fa-edit" style="margin-right: 8px;"></i>修改';
                 editButton.style.backgroundColor = '#007bff';
                 editButton.style.marginLeft = 'auto';
                 titleAndButtonsContainer.appendChild(editButton);
 
                 const deleteButton = document.createElement('button');
-                deleteButton.innerHTML = '<i class="fas fa-trash" style="margin-right： 8px;"></i>刪除';
+                deleteButton.innerHTML = '<i class="fas fa-trash" style="margin-right: 8px;"></i>刪除';
                 deleteButton.style.backgroundColor = 'red';
 		deleteButton.style.marginLeft = '5px';
                 titleAndButtonsContainer.appendChild(deleteButton);
@@ -437,7 +437,7 @@ async function displayMessages() {
                     userInfoElement.innerHTML = `<i class="fas fa-user"></i> <strong></strong> ${message.userId}`;
                 }
             } catch (error) {
-                console.error('Error fetching user profile：', error);
+                console.error('Error fetching user profile:', error);
                 userInfoElement.innerHTML = `<i class="fas fa-user"></i> <strong></strong> ${message.userId}`;
             }
             messageElement.appendChild(userInfoElement);
@@ -457,7 +457,7 @@ async function displayMessages() {
 
             // 标签
             const tagsElement = document.createElement('p');
-            tagsElement.innerHTML = `<strong></strong> ${message.tags ? getTagsAsLinks(message.tags) ： ''}`;
+            tagsElement.innerHTML = `<strong></strong> ${message.tags ? getTagsAsLinks(message.tags) : ''}`;
 	    tagsElement.style.marginLeft = '55px';
             messageElement.appendChild(tagsElement);
 
@@ -519,7 +519,7 @@ async function displayMessages() {
                 event.preventDefault();
                 const commentContent = commentInput.value.trim();
                 if (commentContent) {
-                    const messageInfo = { userId： message.userId, title： message.title };
+                    const messageInfo = { userId: message.userId, title: message.title };
                     handleCommentSubmit(event, messageInfo, userId, db, commentContent);
                 } else {
                     alert('評論内容不能为空');
@@ -543,7 +543,7 @@ async function displayMessages() {
         });
 
     } catch (error) {
-        console.error('Error fetching messages：', error);
+        console.error('Error fetching messages:', error);
     }
 }
 
@@ -569,7 +569,7 @@ function getTagsAsLinks(tagsArray) {
 async function filterMessagesByTag(tag) {
     try {
         const querySnapshot = await db.collection('project').doc('messages').collection('messages').where('tags', 'array-contains', tag).get();
-        console.log('Messages filtered by tag：', tag, 'Total：', querySnapshot.docs.length);
+        console.log('Messages filtered by tag:', tag, 'Total:', querySnapshot.docs.length);
 
         // 清空之前显示的留言
         const messagesContainer = document.getElementById('messages');
@@ -577,7 +577,7 @@ async function filterMessagesByTag(tag) {
 
         // 遍历每条留言并渲染到 HTML 页面上
         for (const doc of querySnapshot.docs) {
-            console.log('Rendering message：', doc.id);
+            console.log('Rendering message:', doc.id);
             const message = doc.data(); // 获取留言数据
 
             // 将时间转换为格式化的字符串
@@ -594,20 +594,20 @@ async function filterMessagesByTag(tag) {
 
             // 标题
             const titleElement = document.createElement('h4');
-            titleElement.innerHTML = '<strong>標題：</strong> ' + message.title;
+            titleElement.innerHTML = '<strong>標題:</strong> ' + message.title;
             titleElement.style.width = '2000px';
             titleAndButtonsContainer.appendChild(titleElement);
 
             // 如果用户是消息的作者，添加编辑和删除按钮
             if (message.userId === userId) {
                 const editButton = document.createElement('button');
-                editButton.innerHTML = '<i class="fas fa-edit" style="margin-right： 8px;"></i>修改';
+                editButton.innerHTML = '<i class="fas fa-edit" style="margin-right: 8px;"></i>修改';
                 editButton.style.backgroundColor = '#007bff';
                 editButton.style.marginLeft = 'auto';
                 titleAndButtonsContainer.appendChild(editButton);
 
                 const deleteButton = document.createElement('button');
-                deleteButton.innerHTML = '<i class="fas fa-trash" style="margin-right： 8px;"></i>刪除';
+                deleteButton.innerHTML = '<i class="fas fa-trash" style="margin-right: 8px;"></i>刪除';
                 deleteButton.style.backgroundColor = 'red';
                 deleteButton.style.marginLeft = '10px';
                 titleAndButtonsContainer.appendChild(deleteButton);
@@ -626,7 +626,7 @@ async function filterMessagesByTag(tag) {
                     userInfoElement.innerHTML = `<i class="fas fa-user"></i> <strong></strong> ${message.userId}`;
                 }
             } catch (error) {
-                console.error('Error fetching user profile：', error);
+                console.error('Error fetching user profile:', error);
                 userInfoElement.innerHTML = `<i class="fas fa-user"></i> <strong></strong> ${message.userId}`;
             }
             messageElement.appendChild(userInfoElement);
@@ -646,7 +646,7 @@ async function filterMessagesByTag(tag) {
 
             // 标签
             const tagsElement = document.createElement('p');
-            tagsElement.innerHTML = ` ${message.tags ? getTagsAsLinks(message.tags) ： ''}`;
+            tagsElement.innerHTML = ` ${message.tags ? getTagsAsLinks(message.tags) : ''}`;
 	    tagsElement.style.marginLeft = '55px';
             messageElement.appendChild(tagsElement);
 
@@ -707,7 +707,7 @@ async function filterMessagesByTag(tag) {
                 event.preventDefault();
                 const commentContent = commentInput.value.trim();
                 if (commentContent) {
-                    const messageInfo = { userId： message.userId, title： message.title };
+                    const messageInfo = { userId: message.userId, title: message.title };
                     handleCommentSubmit(event, messageInfo, userId, db, commentContent);
                 } else {
                     alert('評論内容不能为空');
@@ -731,7 +731,7 @@ async function filterMessagesByTag(tag) {
         });
 
     } catch (error) {
-        console.error('Error filtering messages by tag：', error);
+        console.error('Error filtering messages by tag:', error);
     }
 }
 
@@ -741,53 +741,53 @@ async function filterMessagesByTag(tag) {
 async function displayComments(messageId, commentContainerId) {
     try {
         const querySnapshot = await db.collection('project').doc('messages').collection('reply').where('messageId', '==', messageId).get();
-        console.log('Comments fetched successfully for message：', messageId, 'Total：', querySnapshot.docs.length);
+        console.log('Comments fetched successfully for message:', messageId, 'Total:', querySnapshot.docs.length);
 
         const commentsContainer = document.getElementById(commentContainerId);
         if (!commentsContainer) {
-            console.error('Comments container not found：', commentContainerId);
+            console.error('Comments container not found:', commentContainerId);
             return;
         }
 
         commentsContainer.innerHTML = '';
 
         const userIds = querySnapshot.docs.map(doc => doc.data().userId);
-        console.log('User IDs：', userIds);  // 调试输出
+        console.log('User IDs:', userIds);  // 调试输出
 
         const userProfiles = await Promise.all(userIds.map(userId => fetchUserProfile(userId)));
-        console.log('User profiles：', userProfiles);  // 调试输出
+        console.log('User profiles:', userProfiles);  // 调试输出
 
         const userProfileMap = {};
         userIds.forEach((userId, index) => {
             userProfileMap[userId] = userProfiles[index];
         });
 
-        console.log('User profile map：', userProfileMap); // 调试输出，检查 userProfileMap
+        console.log('User profile map:', userProfileMap); // 调试输出，检查 userProfileMap
 
         for (const doc of querySnapshot.docs) {
             const commentData = doc.data();
             const formattedTime = commentData.time.toDate().toLocaleString();
 
             // 获取用户资料
-            const userProfile = userProfileMap[commentData.userId] || { pictureUrl： '', displayName： '' };
+            const userProfile = userProfileMap[commentData.userId] || { pictureUrl: '', displayName: '' };
             const { pictureUrl, displayName } = userProfile;
 
             // 检查用户资料是否正确获取
             if (!displayName || !pictureUrl) {
-                console.error('Failed to fetch profile for user：', commentData.userId);
+                console.error('Failed to fetch profile for user:', commentData.userId);
             } else {
-                console.log('Fetched profile：', displayName, pictureUrl);  // 添加日志输出
+                console.log('Fetched profile:', displayName, pictureUrl);  // 添加日志输出
             }
 
             const userInfoHtml = '<p><img src="' + pictureUrl + '" alt="User Avatar" class="avatar" /> <strong>' + displayName + '</strong> </p>';
 
             // 时间元素
-            const timeElement = `<p style="margin-left： 55px; font-size： 12px;"><strong></strong> ${formattedTime}</p>`;
+            const timeElement = `<p style="margin-left: 55px; font-size: 12px;"><strong></strong> ${formattedTime}</p>`;
 
             // 内容元素
-            const contentElement = `<p style="margin-left： 55px; font-size： 24px;"><strong></strong> ${commentData.content}</p>`;
+            const contentElement = `<p style="margin-left: 55px; font-size: 24px;"><strong></strong> ${commentData.content}</p>`;
 
-            let commentElement = '<div class="comment" style="border： 1px solid #ccc; background-color： #f5f5f5; margin-bottom： 10px; padding： 10px;" data-comment-id="' + doc.id + '">';
+            let commentElement = '<div class="comment" style="border: 1px solid #ccc; background-color: #f5f5f5; margin-bottom: 10px; padding: 10px;" data-comment-id="' + doc.id + '">';
             commentElement += userInfoHtml;
             commentElement += timeElement;
             commentElement += contentElement;
@@ -827,7 +827,7 @@ async function displayComments(messageId, commentContainerId) {
             commentsContainer.insertAdjacentHTML('beforeend', commentElement);
         }
     } catch (error) {
-        console.error('Error fetching comments：', error);
+        console.error('Error fetching comments:', error);
     }
 }
 
@@ -852,10 +852,10 @@ async function handleCommentSubmit(event, messageInfo, userId, db, commentConten
 
         // 更新评论内容
         await replyRef.set({
-            userId： userId, // 评论的用户ID
-            messageId： messageInfo.userId + '_' + messageInfo.title, // 关联的留言ID
-            content： commentContent, // 评论内容
-            time： firebase.firestore.FieldValue.serverTimestamp() // 当前时间戳
+            userId: userId, // 评论的用户ID
+            messageId: messageInfo.userId + '_' + messageInfo.title, // 关联的留言ID
+            content: commentContent, // 评论内容
+            time: firebase.firestore.FieldValue.serverTimestamp() // 当前时间戳
         });
 
         console.log('Comment added successfully!');
@@ -863,7 +863,7 @@ async function handleCommentSubmit(event, messageInfo, userId, db, commentConten
 		// 添加评论成功后重新加载留言和评论
         displayMessages(); // 重新加载留言和评论
     } catch (error) {
-        console.error('Error adding comment：', error);
+        console.error('Error adding comment:', error);
     }
 }
 
@@ -924,8 +924,8 @@ function editMessage(userId, replyNumber) {
             alert('留言文檔不存在');
         }
     }).catch(error => {
-        console.error('獲取留言資料時發生錯誤：', error);
-        alert('獲取留言資料時發生錯誤：' + error.message);
+        console.error('獲取留言資料時發生錯誤:', error);
+        alert('獲取留言資料時發生錯誤:' + error.message);
     });
 
 form.addEventListener('submit', event => {
@@ -950,8 +950,8 @@ form.addEventListener('submit', event => {
 				updateMessageContentAndTagsnewimage(messageRef, content, tags, editDialog);
 			})
 			.catch(error => {
-				console.error('上傳圖片時發生錯誤：', error);
-				alert('上傳圖片時發生錯誤：' + error.message);
+				console.error('上傳圖片時發生錯誤:', error);
+				alert('上傳圖片時發生錯誤:' + error.message);
 			});
 	} else {
 		// 没有选择新图片，直接更新留言内容和标签
@@ -978,8 +978,8 @@ form.addEventListener('submit', event => {
 function updateMessageContentAndTags(messageRef, content, tags, editDialog, imageUrls) {
     // 更新留言内容、标签和图片链接
     const updateData = {
-        content： content,
-        tags： tags
+        content: content,
+        tags: tags
     };
 
     // 添加图片链接到更新数据中
@@ -994,8 +994,8 @@ function updateMessageContentAndTags(messageRef, content, tags, editDialog, imag
             editDialog.style.display = 'none'; // 更新成功后隐藏对话框
         })
         .catch(error => {
-            console.error('更新留言時發生錯誤：', error);
-            alert('更新留言時發生錯誤：' + error.message);
+            console.error('更新留言時發生錯誤:', error);
+            alert('更新留言時發生錯誤:' + error.message);
         });
 }
 
@@ -1003,8 +1003,8 @@ function updateMessageContentAndTags(messageRef, content, tags, editDialog, imag
 function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDialog) {
     // 更新留言内容、标签和图片链接
     const updateData = {
-        content： content,
-        tags： tags
+        content: content,
+        tags: tags
     };
 
     
@@ -1016,8 +1016,8 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
             editDialog.style.display = 'none'; // 更新成功后隐藏对话框
         })
         .catch(error => {
-            console.error('更新留言時發生錯誤：', error);
-            alert('更新留言時發生錯誤：' + error.message);
+            console.error('更新留言時發生錯誤:', error);
+            alert('更新留言時發生錯誤:' + error.message);
         });
 }
 
@@ -1039,7 +1039,7 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 					for (let i = 0; i < Object.keys(messageData).length; i++) {
 						const imageUrlKey = 'imageUrl_' + i;
 						deletePromises.push(messageRef.update({
-							[imageUrlKey]： firebase.firestore.FieldValue.delete() // 使用 delete 方法删除字段
+							[imageUrlKey]: firebase.firestore.FieldValue.delete() // 使用 delete 方法删除字段
 						}));
 					}
 					// 等待所有删除操作完成
@@ -1086,7 +1086,7 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 							},
 							error => {
 								// 上传过程中出错
-								console.error('Error uploading image to Firebase Storage：', error);
+								console.error('Error uploading image to Firebase Storage:', error);
 								reject(error);
 							}
 						);
@@ -1102,7 +1102,7 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 								},
 								error => {
 									// 上传过程中出错
-									console.error('Error uploading image to Firebase Storage：', error);
+									console.error('Error uploading image to Firebase Storage:', error);
 									reject(error);
 								},
 								async () => {
@@ -1112,29 +1112,29 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 									try {
 										// 获取上传文件的下载 URL
 										const imageUrl = await uploadTask.snapshot.ref.getDownloadURL();
-										console.log('Image URL：', imageUrl);
+										console.log('Image URL:', imageUrl);
 
 										// 在上传完成后更新留言数据
 										const updateData = {
-											['imageUrl_' + index]： imageUrl
+											['imageUrl_' + index]: imageUrl
 										};
 
 										messageRef.update(updateData).then(() => {
 											console.log(`圖片 URL ${index} 已成功更新`);
 											resolve();
 										}).catch(error => {
-											console.error(`更新圖片 URL ${index} 時發生錯誤：`, error);
+											console.error(`更新圖片 URL ${index} 時發生錯誤:`, error);
 											reject(error);
 										});
 									} catch (error) {
-										console.error('Error getting download URL：', error);
+										console.error('Error getting download URL:', error);
 										reject(error);
 									}
 								}
 							);
 						});
 					} catch (error) {
-						console.error('Error uploading image to Firebase Storage：', error);
+						console.error('Error uploading image to Firebase Storage:', error);
 						throw error;
 					}
 				});
@@ -1143,7 +1143,7 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 				await Promise.all(uploadPromises);
 				console.log('所有圖片上傳完成');
 			} catch (error) {
-				console.error('Error uploading images to Firebase Storage：', error);
+				console.error('Error uploading images to Firebase Storage:', error);
 				throw error;
 			}
 		}
@@ -1151,7 +1151,7 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 
 		async function editComment(commentId) {
 			try {
-				const newContent = prompt('請輸入修改後的評論内容：');
+				const newContent = prompt('請輸入修改後的評論内容:');
 				if (newContent === null) {
 					// 用户取消了输入
 					return;
@@ -1159,17 +1159,17 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 
 				// 更新评论内容和时间戳
 				await db.collection('project').doc('messages').collection('reply').doc(commentId).update({
-					content： newContent,
-					time： firebase.firestore.FieldValue.serverTimestamp() // 更新时间戳
+					content: newContent,
+					time: firebase.firestore.FieldValue.serverTimestamp() // 更新时间戳
 				});
 
-				console.log('Comment updated successfully：', commentId);
+				console.log('Comment updated successfully:', commentId);
 				alert("評論已成功更新！");
 				// 在这里执行任何其他必要的操作
 				displayMessages(); // 重新加载留言和评论
 				
 			} catch (error) {
-				console.error('Error updating comment：', error);
+				console.error('Error updating comment:', error);
 			}
 		}
 
@@ -1196,7 +1196,7 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 						alert("留言已成功删除！");
 					})
 					.catch((error) => {
-						console.error('刪除留言時發生錯誤：', error);
+						console.error('刪除留言時發生錯誤:', error);
 					});
 			}
 		}
@@ -1205,12 +1205,12 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 		const confirmDelete = confirm("確定要刪除這篇評論嗎？");
 		try {
 			await db.collection('project').doc('messages').collection('reply').doc(commentId).delete();
-			console.log('Comment deleted successfully：', commentId);
+			console.log('Comment deleted successfully:', commentId);
 			alert("評論已成功删除！");
 			// 在这里执行任何其他必要的操作
 			displayMessages(); // 重新加载留言和评论
 		} catch (error) {
-			console.error('Error deleting comment：', error);
+			console.error('Error deleting comment:', error);
 		}
 		}
 		
@@ -1232,370 +1232,370 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
     </script>
     
     <style>
-       div{ word-wrap：break-word; word-break：normal;}
+       div{ word-wrap:break-word; word-break:normal;}
        
        
        .container {
-			border： 2px solid #ccc; /* 设置边框样式 */
-			border-radius： 10px; /* 设置边框圆角 */
-			max-width： 700px;
-			width： 100%; /* 设置宽度为父元素宽度的100% */
-			margin： 0 auto;
-			padding： 20px;
-			box-shadow： 0 0 10px rgba(0, 0, 0, 0.1);
+			border: 2px solid #ccc; /* 设置边框样式 */
+			border-radius: 10px; /* 设置边框圆角 */
+			max-width: 700px;
+			width: 100%; /* 设置宽度为父元素宽度的100% */
+			margin: 0 auto;
+			padding: 20px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 		}
 
 
         h1 {
-            text-align： center;
+            text-align: center;
         }
 
         form {
-            margin-bottom： 20px;
+            margin-bottom: 20px;
         }
 
         input[type="text"],
         textarea {
-            width： 100%;
-            margin-bottom： 10px;
-            padding： 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
         }
 
         button {
-            display： block;
-            width： 100%;
-            padding： 10px;
-            background-color： #6a4432;
-            color： #fff;
-            border： none;
-            cursor： pointer;
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #6a4432;
+            color: #fff;
+            border: none;
+            cursor: pointer;
         }
 
-        button：hover {
-            background-color： #0056b3;
+        button:hover {
+            background-color: #0056b3;
         }
 
         #messages {
-            margin-top： 20px;
+            margin-top: 20px;
         }
 
         .message {
-            margin-bottom： 20px;
-            border： 1px solid #ccc;
-            padding： 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
         }
 		
 		/* 在 CSS 中設置彈出式視窗的樣式 */
 		.modal {
-			display： none; /* 隱藏彈出式視窗 */
-			position： fixed;
-			z-index： 1;
-			left： 0;
-			top： 0;
-			width： 100%;
-			height： 100%;
-			overflow： auto;
-			background-color： rgba(0,0,0,0.9); /* 黑色背景，透明度 0.9 */
+			display: none; /* 隱藏彈出式視窗 */
+			position: fixed;
+			z-index: 1;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: rgba(0,0,0,0.9); /* 黑色背景，透明度 0.9 */
 		}
 
 		.modal-content {
-			margin： auto;
-			display： block;
-			height： 70%;
-			width： 80%;
-			max-width： none; /* 移除最大宽度限制 */
-			max-height： none; /* 移除最大高度限制 */
+			margin: auto;
+			display: block;
+			height: 70%;
+			width: 80%;
+			max-width: none; /* 移除最大宽度限制 */
+			max-height: none; /* 移除最大高度限制 */
 		}
 			/* 模态对话框样式 */
 		.modal-content input[type="text"],
 		.modal-content textarea {
-			color： white; /* 设置文本颜色为白色 */
+			color: white; /* 设置文本颜色为白色 */
 			/* 添加其他样式，例如背景色、边框等 */
 		}
 
 		.close {
-			position： absolute;
-			top： 15px;
-			right： 35px;
-			color： #f1f1f1;
-			font-size： 40px;
-			font-weight： bold;
-			transition： 0.3s;
+			position: absolute;
+			top: 15px;
+			right: 35px;
+			color: #f1f1f1;
+			font-size: 40px;
+			font-weight: bold;
+			transition: 0.3s;
 		}
 
-		.close：hover,
-		.close：focus {
-			color： #bbb;
-			text-decoration： none;
-			cursor： pointer;
+		.close:hover,
+		.close:focus {
+			color: #bbb;
+			text-decoration: none;
+			cursor: pointer;
 		}
 		/* 默认状态下的按钮样式 */
 		.small-button {
-			width： 80px; /* 設置按鈕的寬度為 80 像素 */
-			height： 30px; /* 設置按鈕的高度為 30 像素 */
-			font-size： 14px; /* 設置按鈕文字的字體大小 */
-			background-color： #007bff; /* 蓝色 */
-			color： #fff; /* 白色 */
-			border： none;
-			padding： 5px 10px;
-			cursor： pointer;
-			border-radius： 5px;
+			width: 80px; /* 設置按鈕的寬度為 80 像素 */
+			height: 30px; /* 設置按鈕的高度為 30 像素 */
+			font-size: 14px; /* 設置按鈕文字的字體大小 */
+			background-color: #007bff; /* 蓝色 */
+			color: #fff; /* 白色 */
+			border: none;
+			padding: 5px 10px;
+			cursor: pointer;
+			border-radius: 5px;
 		}
 
 		/* 被选择状态下的按钮样式 */
 		.selected-button {
-			background-color： #6c757d; /* 灰色 */
+			background-color: #6c757d; /* 灰色 */
 		}
 		
 		#selectImageButton {
-        background-color： green;
+        background-color: green;
         /* 添加其他样式，如边框、颜色、字体等 */
-		border-radius： 10px; /* 通过设置合适的像素值来调整圆角的大小 */
+		border-radius: 10px; /* 通过设置合适的像素值来调整圆角的大小 */
 		}
 		
 		#modifyImageButton {
-        background-color： green;
+        background-color: green;
         /* 添加其他样式，如边框、颜色、字体等 */
-		border-radius： 10px; /* 通过设置合适的像素值来调整圆角的大小 */
+		border-radius: 10px; /* 通过设置合适的像素值来调整圆角的大小 */
 		}
 		
 		#submitButton {
-		border-radius： 10px; /* 通过设置合适的像素值来调整圆角的大小 */
+		border-radius: 10px; /* 通过设置合适的像素值来调整圆角的大小 */
 		
 		}
 		#showAllMessagesButton{
-			background-color： #8d6955;
+			background-color: #8d6955;
 		}
 		
 		
 		#confirmButton {
-		border-radius： 10px; /* 通过设置合适的像素值来调整圆角的大小 */
+		border-radius: 10px; /* 通过设置合适的像素值来调整圆角的大小 */
 		}
 		/* 样式表中添加以下样式 */
 		.fixed-size-image {
-			width： 200px; /* 设置图片宽度为200像素 */
-			height： 200px; /* 设置图片高度为200像素 */
-			object-fit： cover; /* 让图片保持原始比例，但填满整个元素，可能会裁剪部分图片 */
+			width: 200px; /* 设置图片宽度为200像素 */
+			height: 200px; /* 设置图片高度为200像素 */
+			object-fit: cover; /* 让图片保持原始比例，但填满整个元素，可能会裁剪部分图片 */
 		}
 		 /* 样式化对话框 */
         .dialog-overlay {
-            position： fixed;
-            top： 0;
-            left： 0;
-            width： 100%;
-            height： 100%;
-            background-color： rgba(0, 0, 0, 0.5);
-            display： flex;
-            justify-content： center;
-            align-items： center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         .dialog-content {
-            background-color： #fff;
-            padding： 20px;
-            border-radius： 5px;
-            box-shadow： 0 0 10px rgba(0, 0, 0, 0.3);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
 		
 		#imageContainer {
-			max-width： 300px; /* 设置容器的最大宽度 */
-			max-height： 300px; /* 设置容器的最大高度 */
-			overflow： auto; /* 添加滚动条，以便在容器溢出时滚动查看 */
+			max-width: 300px; /* 设置容器的最大宽度 */
+			max-height: 300px; /* 设置容器的最大高度 */
+			overflow: auto; /* 添加滚动条，以便在容器溢出时滚动查看 */
 		}
 
 
 		#imageContainer img {
-			max-width： 100%;
-			max-height： 100%;
+			max-width: 100%;
+			max-height: 100%;
 		}
 		
 		 .dialog-overlay {
-            position： fixed;
-            top： 0;
-            left： 0;
-            width： 100%;
-            height： 100%;
-            background-color： rgba(0, 0, 0, 0.5);
-            display： none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
         }
 
         .dialog-content {
-            position： absolute;
-            top： 50%;
-            left： 50%;
-            transform： translate(-50%, -50%);
-            background-color： white;
-            padding： 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
         }
 		
 		.button-container {
-			display： flex;
+			display: flex;
 		}
 
 		.button-container button {
-			margin-right： 10px; /* 设置按钮之间的间距 */
+			margin-right: 10px; /* 设置按钮之间的间距 */
 		}
 		
 		.full-width-image {
-			width： 95%;
-				height： auto;
-				max-height： 550px; /* 设置图片的最大高度 */
-				display： block;
-				margin： 0;
-				padding-left： 80px;
-				padding-top： 100px;
-				object-fit： cover; /* 确保图片在缩放时保持其宽高比 */
-				position： relative; /* 确保图片在父容器内定位 */
-				z-index： 1; /* 设置z-index以确保其在最下面 */
-				margin-bottom： 50px;
+			width: 95%;
+				height: auto;
+				max-height: 550px; /* 设置图片的最大高度 */
+				display: block;
+				margin: 0;
+				padding-left: 80px;
+				padding-top: 100px;
+				object-fit: cover; /* 确保图片在缩放时保持其宽高比 */
+				position: relative; /* 确保图片在父容器内定位 */
+				z-index: 1; /* 设置z-index以确保其在最下面 */
+				margin-bottom: 50px;
 		}
 
 		.full-width-image-title {
-			width： 20%; /* 确保图片宽度适应屏幕宽度 */
-			max-height： 100px;
-			height： auto;
-			display： block;
-			margin： 0 auto; /* 水平居中对齐 */
-			object-fit： cover;
-			position： fixed;
-			top： 25px;
-			left： 0;
-			right： 0;
-			background-color： #fff;
-			transition： transform 0.3s ease; /* 平滑过渡 */
-			z-index： 3;
+			width: 20%; /* 确保图片宽度适应屏幕宽度 */
+			max-height: 100px;
+			height: auto;
+			display: block;
+			margin: 0 auto; /* 水平居中对齐 */
+			object-fit: cover;
+			position: fixed;
+			top: 25px;
+			left: 0;
+			right: 0;
+			background-color: #fff;
+			transition: transform 0.3s ease; /* 平滑过渡 */
+			z-index: 3;
 		}
 		.fixed-background {
-			position： fixed;
-			top： 0;
-			left： 0;
-			width： 100%;
-			height： 100px; /* 固定的高度 */
-			background-color： #fff; /* 背景颜色 */
-			box-shadow： 0 1px 1px rgba(0, 0, 0, 0.1); /* 可选阴影效果 */
-			z-index： 3;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100px; /* 固定的高度 */
+			background-color: #fff; /* 背景颜色 */
+			box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* 可选阴影效果 */
+			z-index: 3;
 		}
 
 		.shadow-line {
-			position： fixed;
-			top： 100px;
-			left： 0;
-			width： 100%;
-			height： 1px;
-			box-shadow： 0 1px 1px rgba(0, 0, 0, 0.5);
-			background-color： #fff;
-			z-index： 3;
+			position: fixed;
+			top: 100px;
+			left: 0;
+			width: 100%;
+			height: 1px;
+			box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+			background-color: #fff;
+			z-index: 3;
 		}
 		
 		 .input-container {
-            display： flex;
-            align-items： center;
-            margin-bottom： 20px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
         }
         .input-container i {
-            background-color： #4a2b1e;
-            color： white;
-            padding： 10px;
-            border-radius： 50%;
-            margin-right： 10px;
+            background-color: #4a2b1e;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            margin-right: 10px;
         }
 		.input-container label {
-            font-size： 1em; /* 增加字体大小 */
-            color： #333; /* 改变文本颜色 */
-            margin-right： 10px;
+            font-size: 1em; /* 增加字体大小 */
+            color: #333; /* 改变文本颜色 */
+            margin-right: 10px;
         }
         .input-container input,
         .input-container textarea {
-            flex： 1;
-            padding： 10px;
-            font-size： 1em; /* 设置输入框字体大小 */
+            flex: 1;
+            padding: 10px;
+            font-size: 1em; /* 设置输入框字体大小 */
         }
 		
 		p i {
-			background-color： #4a2b1e;
-			color： white;
-			padding： 5px;
-			border-radius： 50%;
-			margin-right： 10px;
+			background-color: #4a2b1e;
+			color: white;
+			padding: 5px;
+			border-radius: 50%;
+			margin-right: 10px;
 		}
 		.large-text {
-			font-size： 1.5em; /* 这里可以根据需要调整字体大小 */
+			font-size: 1.5em; /* 这里可以根据需要调整字体大小 */
 		}
 		
 		 .avatar {
-            width： 40px;
-            height： 40px;
-            border-radius： 50%;
-            object-fit： cover;
-            margin-right： 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
         }
         .user-info {
-            display： flex;
-            align-items： center;
+            display: flex;
+            align-items: center;
         }
 
 
 
 /* 响应式调整 */
-@media (max-width： 768px) {
+@media (max-width: 768px) {
 		html, body {
-		margin： 0;
-		height： 100%;
-		font-family： 'Roboto', sans-serif;
-		background-color： #fff;
-		transition： margin-left 0.3s ease;
+		margin: 0;
+		height: 100%;
+		font-family: 'Roboto', sans-serif;
+		background-color: #fff;
+		transition: margin-left 0.3s ease;
 	}
 
 	.full-width-image {
-		width： 100%; /* 确保图片宽度适应屏幕宽度 */
-		height： auto;
-     		margin： 0;
-        	padding-left： 0px;
-		padding-top： 80px;
-		margin-bottom： 20px; /* 设置与下方的距离 */
-		display： block;
-		object-fit： cover; /* 确保图片在缩放时保持其宽高比 */
+		width: 100%; /* 确保图片宽度适应屏幕宽度 */
+		height: auto;
+     		margin: 0;
+        	padding-left: 0px;
+		padding-top: 80px;
+		margin-bottom: 20px; /* 设置与下方的距离 */
+		display: block;
+		object-fit: cover; /* 确保图片在缩放时保持其宽高比 */
 		
 	}
 
 	.full-width-image-title {
-		width： 80%; /* 确保图片宽度适应屏幕宽度 */
-		max-height： 80px;
-		height： auto;
-		display： block;
-		margin： 0 auto; /* 水平居中对齐 */
-		object-fit： cover;
-		position： fixed;
-		top： 0px;
+		width: 80%; /* 确保图片宽度适应屏幕宽度 */
+		max-height: 80px;
+		height: auto;
+		display: block;
+		margin: 0 auto; /* 水平居中对齐 */
+		object-fit: cover;
+		position: fixed;
+		top: 0px;
 		
-		left： 0;
-		right： 0;
-		background-color： #fff;
-		transition： transform 0.3s ease; /* 平滑过渡 */
+		left: 0;
+		right: 0;
+		background-color: #fff;
+		transition: transform 0.3s ease; /* 平滑过渡 */
 	}
 
 	.fixed-background {
-		position： fixed;
-		top： 0;
-		left： 0;
-		width： 100%;
-		height： 80px; /* 固定的高度 */
-		background-color： #fff; /* 背景颜色 */
-		box-shadow： 0 1px 1px rgba(0, 0, 0, 0.1); /* 可选阴影效果 */
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 80px; /* 固定的高度 */
+		background-color: #fff; /* 背景颜色 */
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* 可选阴影效果 */
 	}
 
 	.shadow-line {
-		position： fixed;
-		top： 80px;
-		left： 0;
-		width： 100%;
-		height： 1px;
-		box-shadow： 0 1px 1px rgba(0, 0, 0, 0.5);
-		background-color： #fff;
+		position: fixed;
+		top: 80px;
+		left: 0;
+		width: 100%;
+		height: 1px;
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+		background-color: #fff;
 	}
 
 	.content {
-		margin-top： 85px; /* 留出固定背景区域的空间 */
+		margin-top: 85px; /* 留出固定背景区域的空间 */
 	}
 
 
@@ -1612,9 +1612,9 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 </head>
 <body>
 	<div class="fixed-background"></div> <!-- 固定白色背景区域 -->
-    <img src="https：//imgur.com/Z9EYazU.png" alt="Full Width Image" class="full-width-image-title">
+    <img src="https://imgur.com/Z9EYazU.png" alt="Full Width Image" class="full-width-image-title">
 	<div class="shadow-line"></div> <!-- 阴影线 -->
-    <img src="https：//imgur.com/fVH42uz.png" alt="Full Width Image" class="full-width-image">
+    <img src="https://imgur.com/fVH42uz.png" alt="Full Width Image" class="full-width-image">
 	
 	
 	
@@ -1629,23 +1629,23 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 		<form id="messageForm">
 			<div class="input-container">
 				<i class="fas fa-heading"></i>
-				<label for="titleInput">標題：</label>
+				<label for="titleInput">標題:</label>
 				<input type="text" id="titleInput" name="titleInput"><br><br>
 			 </div>
 			
 			
 			 <div class="input-container">
 				<i class="fas fa-align-left"></i>
-				<label for="contentInput">内容：</label>
+				<label for="contentInput">内容:</label>
 				<textarea id="contentInput" name="contentInput"></textarea><br><br>
 			</div>
-			<!--<label for="dateInput">日期：</label>
+			<!--<label for="dateInput">日期:</label>
 			<input type="date" id="dateInput" name="dateInput"><br><br>-->
 			
 			
 			<div class="input-container">
 				<i class="fas fa-image"></i>
-				<label for="imageInput">圖片：</label>
+				<label for="imageInput">圖片:</label>
 				<br>
 				<input type="file" id="imageInput" name="imageInput"  multiple><br><br>
 			</div>
@@ -1655,10 +1655,10 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 
 			<div class="input-container">
 				<i class="fas fa-tags"></i>
-				<label for="tagsInput">Tags(請以#開頭輸入)：</label>
+				<label for="tagsInput">Tags(請以#開頭輸入):</label>
 				<input type="text" id="tagsInput" name="tagsInput">
 			</div>
-			<ul id="tagsList" style="display： none;">
+			<ul id="tagsList" style="display: none;">
 				<li>永續</li>
 				<li>環保</li>
 				<li>環保材質</li>
@@ -1697,18 +1697,18 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
     <div class="dialog-content">
         <h2>編輯留言</h2>
         <form id="editForm">
-            <label for="content">内容：</label><br>
+            <label for="content">内容:</label><br>
             <textarea id="content" name="content"></textarea><br>
-            <label for="tags">標籤：</label><br>
+            <label for="tags">標籤:</label><br>
             <input type="text" id="tags" name="tags"><br>
-            <label for="image">選擇要重新上傳的圖片：</label><br>
+            <label for="image">選擇要重新上傳的圖片:</label><br>
             <input type="file" id="image" name="image" multiple><br>
             <!-- 图片容器 -->
             <div id="imageContainer"></div> <!-- 这里将用来显示图片链接 -->
-            <div style="display： flex; justify-content： space-between;">
-				<button type="submit" style="background-color： green;">保存修改</button>
-				<div style="width： 20px;"></div> <!-- 添加空的 div 元素 -->
-				<button type="button" id="closeDialogButton" style="background-color： red;">關閉</button>
+            <div style="display: flex; justify-content: space-between;">
+				<button type="submit" style="background-color: green;">保存修改</button>
+				<div style="width: 20px;"></div> <!-- 添加空的 div 元素 -->
+				<button type="button" id="closeDialogButton" style="background-color: red;">關閉</button>
 			</div>
 
         </form>
@@ -1757,7 +1757,7 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 
 	   // const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-	const apiUrl = 'https：//my-project-chenyihsiu.vercel.app';
+	const apiUrl = 'https://my-project-chenyihsiu.vercel.app';
 
         async function fetchUserProfile(userId) {
 	    try {
@@ -1767,7 +1767,7 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 	        }
 	        return await response.json();
 	    } catch (error) {
-	        console.error('Error fetching user profile：', error);
+	        console.error('Error fetching user profile:', error);
 	        return null;
 	    }
 	}
@@ -1780,33 +1780,33 @@ function updateMessageContentAndTagsnewimage(messageRef, content, tags, editDial
 		
 		function handleCommentSubmit(event, messageInfo, userId, db, commentContent) {
 		    // 处理评论提交的逻辑
-		    console.log('Comment submitted for message：', messageInfo.title, 'by user：', userId);
-		    // 示例代码：这里可以将评论保存到数据库
+		    console.log('Comment submitted for message:', messageInfo.title, 'by user:', userId);
+		    // 示例代码:这里可以将评论保存到数据库
 		}
 		
 		// 点击标签过滤消息的示例函数
 		function filterMessagesByTag(tag) {
-		    console.log('Filtering messages by tag：', tag);
-		    // 示例代码：这里可以根据标签过滤消息
+		    console.log('Filtering messages by tag:', tag);
+		    // 示例代码:这里可以根据标签过滤消息
 }
     </script>
 
     <hr />  
-    <div>LINE版本： <span id="getLineVersion"></span></div>
-    <div>內建瀏覽： <span id="isInClient"></span></div>
-    <div>LIFF尺寸： <span id="getContextViewType"></span></div>
-    <div>來自何處： <span id="getContextType"></span></div>
-    <div>1對1聊天： <span id="getContextUtouId"></span></div>
-    <div>群組序號： <span id="getContextGroupId"></span></div>
-    <div>聊天室號： <span id="getContextRoomId"></span></div>
-    <div>登入與否： <span id="isLoggedIn"></span></div>
+    <div>LINE版本: <span id="getLineVersion"></span></div>
+    <div>內建瀏覽: <span id="isInClient"></span></div>
+    <div>LIFF尺寸: <span id="getContextViewType"></span></div>
+    <div>來自何處: <span id="getContextType"></span></div>
+    <div>1對1聊天: <span id="getContextUtouId"></span></div>
+    <div>群組序號: <span id="getContextGroupId"></span></div>
+    <div>聊天室號: <span id="getContextRoomId"></span></div>
+    <div>登入與否: <span id="isLoggedIn"></span></div>
     <hr />
-    <div>使用名稱： <span id="getProfileDisplayName"></span></div>
-    <div>使用序號： <span id="getProfileUserId"></span></div>
-    <div>頭像圖檔： <span id="getProfilePictureUrl"></span></div>
+    <div>使用名稱: <span id="getProfileDisplayName"></span></div>
+    <div>使用序號: <span id="getProfileUserId"></span></div>
+    <div>頭像圖檔: <span id="getProfilePictureUrl"></span></div>
     <hr />
-    <div>作業系統： <span id="getOS"></span></div>
-    <div>使用語言： <span id="getLanguage"></span></div>
+    <div>作業系統: <span id="getOS"></span></div>
+    <div>使用語言: <span id="getLanguage"></span></div>
     <hr />
 
 </body>
