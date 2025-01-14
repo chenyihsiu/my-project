@@ -621,7 +621,7 @@ async function filterMessagesByTag(tag) {
                 const userProfile = await fetchUserProfile(message.userId);
                 if (userProfile) {
                     const { pictureUrl, displayName } = userProfile;
-                    userInfoElement.innerHTML = `<img src="${pictureUrl}" alt="User Avatar" class="avatar" /> <strong>${displayName}</strong> (${message.userId})`;
+                    userInfoElement.innerHTML = `<img src="${pictureUrl}" alt="User Avatar" class="avatar" /> <strong>${displayName}</strong>`;
                 } else {
                     userInfoElement.innerHTML = `<i class="fas fa-user"></i> <strong></strong> ${message.userId}`;
                 }
